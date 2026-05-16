@@ -108,6 +108,4 @@ class MessageBuilder {
  * */
 const messageBuilder = Object.assign(messageTypes, new MessageBuilder());
 
-messageBuilder.str("meep").end;
-
 export default messageBuilder;
