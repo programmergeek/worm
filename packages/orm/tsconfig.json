@@ -1,12 +1,15 @@
 {
-  "extends": "@repo/typescript-config/base.json",
   "compilerOptions": {
     "strictNullChecks": true,
     "module": "commonjs",
-    "target": "esnext",
+    "target": "es2022",
     "declaration": true,
-    "outdir": "dist"
+    "outDir": "dist",
+    "types": ["jest", "node"],
+    "paths": {
+	"@src/*": ["src/*"]
+    }
   },
-  "include": ["src"],
+  "include": ["src/**/*", "tests/**/*"],
   "exclude": ["node_modules", "dist"]
 }
