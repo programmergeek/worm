@@ -11,6 +11,8 @@ export interface WormConfigOptions {
     ClientConfig,
     "user" | "password" | "host" | "port" | "database"
   >;
+  schema: string;
+  query: string;
 }
 
 interface PostgreSQLAuthOptions {
@@ -24,9 +26,11 @@ interface PostgreSQLAuthOptions {
 const DEFAULT_CONFIG: WormConfigOptions = {
   returnErrorAsValue: false,
   enablePool: true,
+  schema: "./schema.sql", // the database schema will be defined within a single sql file
+  query: "./query", // this points to the directory containing the database queries
 };
 
-export function createConfig(
+export default async function createConfig(
   db: string | PostgreSQLAuthOptions,
   options: WormConfigOptions,
 ) {
@@ -63,6 +67,8 @@ export function createConfig(
     client,
     compilerOptions: {
       returnErrorAsValue: options.returnErrorAsValue ?? false,
+      schemaPath: configOptions.schema,
+      queryPath: configOptions.query,
     },
   };
 }
