@@ -1,4 +1,3 @@
-import { type TokenType } from "./tokenRules";
 import { readFile } from "node:fs/promises";
 
 export class Lexer {
